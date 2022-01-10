@@ -8,7 +8,7 @@
 </head>
 <body>
 <h1>
-    Bonjour nous sommes le :
+    Bonjour la date du jour est :
     <?php echo date("d/m/Y"); ?>
 </h1>
 </body>
