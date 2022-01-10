@@ -45,5 +45,31 @@ $age = 24;
     <?php // var_dump($variableATester); permet de debugger son code // ?>
     <?php // print_r($_SERVER) rapporte les informations du Server ?>
 </pre>
+<table>
+    <?php
+    for ($i = 1; $i <= 10; $i++) {
+        if ($i % 2) {
+            echo '<tr style="background-color:#CCC;">';
+        } else {
+            echo '<tr>';
+        }
+
+        for ($k = 1; $k <= 10; $k++) {
+            if ($k % 2 == 0) {
+                echo '<td style="background-color:#888;">' . $i * $k . '</td>';
+            } else {
+                echo '<td>' . $i * $k . '</td>';
+            }
+
+        }
+        echo '</tr>';
+    }
+    ?>
+</table>
+<ul>
+    <?php for ($i = 1; $i <= 10; $i++) : { ?>
+        <li> <?= $i ?></li>
+    <?php } endfor; ?>
+</ul>
 </body>
 </html>
