@@ -18,7 +18,10 @@ if($isPosted) {
 	if (count($errors) == 0) {
 		if ($login == "user" && $password == "123") {
 			$_SESSION['user'] = $login;
-			header("Location: index.php?page=home");
+			addFlash('Vous êtes connecté');
+			$redirect = $_SESSION['redirectPage'] ?? "home";
+			unset($_SESSION['redirectPage']);
+			header("Location: index.php?page=$redirect");
 			exit;
 		} else {
 			array_push($errors, "Vous informations de connexion sont incorrecte");

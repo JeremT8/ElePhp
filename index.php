@@ -4,14 +4,22 @@
 session_start();
 session_regenerate_id(true);
 
+// Import des bibliotheque de l'application
+require 'lib/flash.php';
+
 //Récupération du nom du contrôleur. Par defaut "intro
 $page = filter_input(INPUT_GET, "page")?? "intro";
 
+
+// Route securisé
 $securedRoutes = [
     "cadavre-exquis", "formulaire"
 ];
 
+// Redirection vers login quand on est anonyme et que l'on veux accedez a une securisée.
 if(in_array($page, $securedRoutes) && ! isset($_SESSION['user'])) {
+    addFlash("Vous devez être authentifié pour accèdez à la page $page ");
+    $_SESSION["redirectPage"] = $page;
     header("Location: index.php?page=login");
     exit;
 }

@@ -19,7 +19,7 @@
 		</div>
 		<div class="mb-3 form-group">
 			<label class="form-label">Mot de passe</label>
-			<input class="form-control" type="text" name="password" name="password">
+			<input class="form-control" type="password" name="password" name="password">
 		</div>
 		<button class="btn btn-primary mt-2"type="submit" name="submit">Valider</button>
 	</form>

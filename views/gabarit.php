@@ -19,9 +19,13 @@
 		<?php endif; ?>
 	</nav>
 
-
 	<div class="row justify-content-center">
 		<div class="col-md-8 p-2 bg-success">
+			<?php if(hasFlash()): ?>
+				<div class="alert alert-warning p-2">
+					<?php getFlash() ?>
+				</div>
+			<?php endif; ?>
 			<?php include "views/$template" ?>
 		</div>
 		
