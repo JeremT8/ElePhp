@@ -6,10 +6,11 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title><?= $title ?? "Mon site" ?> </title>
+	<link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
 </head>
 
-<body>
-	<nav>
+<body class="container-fluid p-4">
+	<nav class="navbar">
 		<?php if (isset($_SESSION['user'])) : ?>
 			<h3>Bonjour <?= $_SESSION['user'] ?></h3>
 			<a href="/index.php?page=logout">Déconnexion</a>
@@ -19,8 +20,11 @@
 	</nav>
 
 
-	<div>
-		<?php include "views/$template" ?>
+	<div class="row justify-content-center">
+		<div class="col-md-8 p-2 bg-success">
+			<?php include "views/$template" ?>
+		</div>
+		
 	</div>
 </body>
 

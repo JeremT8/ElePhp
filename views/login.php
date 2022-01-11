@@ -13,13 +13,13 @@
 	<?php endif; ?>
 
 	<form method="post">
-		<div>
-			<label>Identifiant</label>
-			<input type="text" name="username">
+		<div class="mb-3 form-group">
+			<label class="form-label">Identifiant</label>
+			<input class="form-control" type="text" name="username">
 		</div>
-		<div>
-			<label>Mot de passe</label>
-			<input type="password" name="password">
+		<div class="mb-3 form-group">
+			<label class="form-label">Mot de passe</label>
+			<input class="form-control" type="text" name="password" name="password">
 		</div>
-		<button type="submit" name="submit">Valider</button>
+		<button class="btn btn-primary mt-2"type="submit" name="submit">Valider</button>
 	</form>
