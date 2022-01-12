@@ -1,5 +1,7 @@
 <?php 
 
+$filter = filter_input(INPUT_GET, "startWith");
+
 $skillPath = 'data/skills.json';
 
 // Lecture des données du fichier skills.json
@@ -26,6 +28,7 @@ if($isPosted) {
 	}
 };
 
+// Convertie les labels de $skills en majuscule
 $skillsAsArray = array_map(
 	function($item) {
 		$item["label"] = strtoupper($item["label"]);
@@ -33,7 +36,30 @@ $skillsAsArray = array_map(
 },  $skillsAsArray);
 
 
+// Liens vers les premieres lettres des $skills 
+$letters = array_map(
+	function($item) {
+		return substr($item, 0, 1);
+	},
+	array_column($skillsAsArray, "label")
+);
+
+$letters = array_unique($letters);
+
+
+// Filtrage des données
+$skillsAsArray = array_filter(
+	$skillsAsArray,
+	function($item) use ($filter) {
+		return str_starts_with($item["label"], $filter);
+	} );
+
+
+
+
+
 echo render("skills", [
 	"skills" => $skillsAsArray,
-	"skillsObj" => $skillsAsObjet
+	"skillsObj" => $skillsAsObjet,
+	"letters" => $letters
 ]);
