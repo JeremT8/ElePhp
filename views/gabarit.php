@@ -26,7 +26,7 @@
                 </div>
             <?php endif;?>
 
-            <?php include "views/$template"?>
+            <?= $content ?>
         </div>
         
     </div>

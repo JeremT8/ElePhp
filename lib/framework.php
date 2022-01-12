@@ -29,4 +29,34 @@ function getRouteInfos(string $page, array $routes, string $notFound = "not_foun
 
 }
 
+/**
+ * function de calcul du rendu d'un modèle et retourne ce contenu sous la forme d'une chaine de caractere
+ *
+ * @param string $template
+ * @param array $params
+ * @return string  Resultat
+ */
+function getTemplateContent(string $template, array $params = []): string {
+	ob_start();
+	$templatePath = "views/$template.php";
+	$content = "Impossible de charger le modèle";
+	if(file_exists($templatePath)) {
+		extract($params, EXTR_OVERWRITE);
+		include $templatePath;
+		$content = ob_get_clean();
+	}
+
+	return $content;
+}
+
+
+
+function render(string $template, 
+				array $params = [], 
+				string $layout = "gabarit"): string 
+{
+	$params["content"] = getTemplateContent($template, $params);
+	return getTemplateContent($layout, $params);
+}
+
 
