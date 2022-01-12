@@ -1,18 +1,18 @@
-<?php 
+<?php
+
 $cities = [
-	"Paris", "Berlin", "Madrid", "Dublin"
+    "Paris", "Berlin", "Madrid", "Dublin"
 ];
 
-foreach ($cities as $item) {
-	echo $item. "<br>";
+foreach($cities as $item) {
+    echo $item. "<br>";
 }
 
 foreach ($cities as $key => $item) {
-	echo $key. " = " . $item . "<br>";
+    echo $key ." = ". $item . "<br>";
 }
 
-
-// Choix 
+// Choix aléatoire d'une ville 
 echo $cities[array_rand($cities)];
 
 shuffle($cities);

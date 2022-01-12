@@ -1,44 +1,38 @@
 <?php
 
-
 $isPosted = filter_has_var(INPUT_POST, "submit");
 $errors = [];
 
-if($isPosted) {
-	$login = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
-	$password = filter_input(INPUT_POST, "password", FILTER_DEFAULT);
+if($isPosted){
+    $login = filter_input(INPUT_POST, "login", FILTER_SANITIZE_STRING);
+    $password = filter_input(INPUT_POST, "pwd", FILTER_DEFAULT);
 
-	if(empty($login)) {
-		array_push($errors, "Vous devez saisir le login");
-	}
-	if(empty($password)) {
-		array_push($errors, "Vous devez saisir un mot de passe");
-	}
+    if(empty($login)){
+        array_push($errors, "Vous devez saisir le login");
+    }
+    if (empty($password)) {
+        array_push($errors, "Vous devez saisir le mot de passe");
+    }
 
-	if (count($errors) == 0) {
-		if ($login == "user" && $password == "123") {
-			$_SESSION['user'] = $login;
-			addFlash('Vous êtes connecté');
-			$redirect = $_SESSION['redirectPage'] ?? "home";
-			unset($_SESSION['redirectPage']);
-			header("Location: index.php?page=$redirect");
-			exit;
-		} else {
-			array_push($errors, "Vous informations de connexion sont incorrecte");
-		}
-	}
-	
+    if(count($errors) == 0){
+        if($login == "user" && $password == "123"){
+            $_SESSION["user"] = $login;
+            addFlash("Vous êtes connecté");
+            $redirect = $_SESSION["redirectPage"] ?? "home";
+            unset($_SESSION["redirectPage"]);
+            header("location:index.php?page=$redirect");
+            exit;
+        } else {
+            array_push($errors, "Vos infos de connection sont incorrectes");
+        }
+    }
 }
 
-
 $hasErrors = count($errors) > 0;
-$title = 'Login to myself';
+$title = "login";
 
-$password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
-
-
-
+// Affichage de la vue
 $template = "$controller.php";
+// Affichage de la vue
+require "views/gabarit.php";
 
-// Affichage de la vue (view/home.php)
-require 'views/gabarit.php';

@@ -1,22 +1,16 @@
 <?php
 
-$name = $_GET['name'];
-if(! isset($_GET["name"])){
-    $name = 'Jérémy';
+if (!isset($_GET["name"])) {
+    $name = "Seb";
 } else {
     $name = $_GET["name"];
 }
+$color = $_GET["color"] ?? "red";
+$backgroundColor = "#CCAACC";
 
-$color = $_GET['color'];
-if(! isset($_GET["color"])){
-    $color = 'green';
-} else {
-    $color = $_GET["color"];
-}
+$age = "vous avez 50 ans et 3 mois";
 
-$backgroundColor = 'yellowgreen';
-$age = 24;
-
+$gender = "male";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,52 +18,57 @@ $age = 24;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premiere page en PhP</title>
+    <title>Première page PHP</title>
     <style>
         body {
-            background-color: <?php echo $backgroundColor; ?>
+            background-color: <?php echo $backgroundColor ?>
         }
-        h1 {
-            color: <?php echo $color; ?>
-        }
-
     </style>
 </head>
 <body>
-<h1>
-    Bonjour <?= $name; ?> la date du jour est :
-    <?php echo date("d/m/Y"); ?>
-</h1>
+    <h1 style="color: <?php echo $color ?>">
+        Bonjour <?php echo $name ?> nous sommes le
+        <?php echo date("d/m/Y"); ?>
+    </h1>
 
-<pre>
-    <?php // var_dump($variableATester); permet de debugger son code // ?>
-    <?php // print_r($_SERVER) rapporte les informations du Server ?>
-</pre>
+    <?php
+echo "<h2>Bonjour $name </h2>";
+var_dump($backgroundColor);
+
+var_dump($age);
+var_dump((int) $age);
+
+echo ($gender);
+?>
+
+    <pre>
+        <?php print_r($_SERVER);?>
+    <pre>
 <table>
     <?php
-    for ($i = 1; $i <= 10; $i++) {
-        if ($i % 2) {
-            echo '<tr style="background-color:#CCC;">';
-        } else {
-            echo '<tr>';
-        }
-
-        for ($k = 1; $k <= 10; $k++) {
-            if ($k % 2 == 0) {
-                echo '<td style="background-color:#888;">' . $i * $k . '</td>';
-            } else {
-                echo '<td>' . $i * $k . '</td>';
-            }
-
-        }
-        echo '</tr>';
+for ($i = 1; $i <= 10; $i++) {
+    if ($i % 2) {
+        echo '<tr style="background-color:#CCC;">';
+    } else {
+        echo '<tr>';
     }
-    ?>
-</table>
-<ul>
-    <?php for ($i = 1; $i <= 10; $i++) : { ?>
-        <li> <?= $i ?></li>
-    <?php } endfor; ?>
-</ul>
+    for ($k = 1; $k <= 10; $k++) {
+        if ($k % 2 == 0) {
+            echo '<td style="background-color:#888;">' . $i * $k . '</td>';
+        } else {
+            echo '<td>' . $i * $k . '</td>';
+        }
+    }
+    echo '</tr>';
+}
+?>
+ </table>
+
+ <ul>
+     <?php for ($i = 1; $i <= 10; $i++):?>
+        <li><?php echo $i ?></li>
+     <?php endfor; ?>
+ </ul>
+
 </body>
 </html>

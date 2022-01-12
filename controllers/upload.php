@@ -1,34 +1,27 @@
-<?php 
-
-var_dump($_FILES);
+<?php
+    var_dump($_FILES);
 
     $hasUpload = isset($_FILES["upload"]);
 
     if($hasUpload){
         $upload = $_FILES["upload"];
-        if($upload["error"] == 0) {
-            $path = getcwd()."/images/";
+        if($upload["error"] == 0){
+            $path = getcwd(). "/images/";
             $ext = ".jpg";
             $fileName = uniqid("photo_");
 
             $target = $path.$fileName.$ext;
 
-            var_dump($target);
-
-            // var_dump($target);
             $success = move_uploaded_file($upload["tmp_name"], $target);
 
-            if (!$success) {
-                $error = "Impossible de télécharger le fichier ";
+            if(! $success){
+                $error = "Impossible de télécharger le fichier";
             }
+        } else {
+            $error = "Le serveur a refusé le fichier";
         }
-    } else {
-        $error = "Le serveur a refusé le fichier";
     }
-
 ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -41,13 +34,13 @@ var_dump($_FILES);
 
     <form method="post" enctype="multipart/form-data">
         <input type="file" name="upload">
-        <button type="submit">Valider</button>
+        <button type="submit" name="submit">Valider</button>
     </form>
 
     <?php if($hasUpload && ! empty($error)): ?>
-        <p><?= $error ?></p>    
+        <p> <?= $error ?>
     <?php elseif($hasUpload): ?>
-        <img src="images/<?=$fileName.$ext?>">
+        <img src="/images/<?=$fileName.$ext?>">
     <?php endif; ?>
     
 </body>

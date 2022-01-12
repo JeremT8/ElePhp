@@ -1,16 +1,16 @@
-<?php 
+<?php
 
 /**
- * Fonction de conversion de snake_case vers le camelCase
- *
- * @param [type] $varName 
- * @return void
+ * Transforme un nom selon la convention snake_case
+ * en un nom selon la convention camelCase
+ * @param string $varName
+ * @return string
  */
 function snakeCaseToCamelCase(string $varName): string {
-	$arrayName = explode('_', $varName);
-	for ($i = 0; $i < count($arrayName); $i++) {
-		$arrayName[$i] = ucfirst($arrayName[$i]);
-	}
+    $arrayName = explode('_', $varName);
+    for($i=1; $i < count($arrayName); $i++) {
+        $arrayName[$i] = ucfirst($arrayName[$i]);
+    }
 
-	return implode('', $arrayName);
+    return implode('', $arrayName );
 }
