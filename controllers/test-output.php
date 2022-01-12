@@ -1,7 +1,6 @@
 <?php 
 
-
-echo render("home", ["title" => "test du rendu de home"]);
+echo getLinkToRoute("home", ["sort" => "asc", "pageNumber" => 5]);
 
 /***
  * ob_start();
