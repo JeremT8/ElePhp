@@ -32,6 +32,7 @@ if ($isPosted) {
 		$statement = $db->prepare($sql);
 		$statement->execute($queryParams);
 		header("Location" . getLinkToRoute("pdo-persons"));
+		exit;
 	}
 }
 
@@ -41,6 +42,7 @@ if ($id && $action === "delete") {
 	$sql = "DELETE FROM persons WHERE id = $id";
 	$db->exec($sql);
 	header("Location:" . getLinkToRoute("pdo-persons"));
+	exit;
 }
 
 // En cas de modification, récupération des infos de la personne à modifier
