@@ -22,8 +22,8 @@
 		<tr>
 			<td>Prénom</td>
 			<td>Nom</td>
-			<td></td>
-			<td></td>
+			<td>Supprimer</td>
+			<td>Modifier</td>
 
 		</tr>
 	</thead>
