@@ -1,10 +1,6 @@
 <?php
 // Connexion au serveur de la BD
-$db = new PDO(
-	"mysql:host=127.0.0.1;dbname=php_cda_2022;charset=utf8",
-	"root",
-	""
-);
+$db = getPDO();
 
 // Recuperation des parametres du script transmi dans l'url
 $id = (int) filter_input(INPUT_GET, "id", FILTER_SANITIZE_NUMBER_INT);
@@ -49,7 +45,7 @@ if ($id && $action === "delete") {
 if ($id && $action === "update") {
 	$sql = "SELECT * FROM persons WHERE id = $id";
 	$result = $db->query($sql);
-	$currentPerson = $result->fetch(PDO::FETCH_OBJ);
+	$currentPerson = $result->fetch();
 } else {
 	$currentPerson = new StdClass();
 	$currentPerson->first_name = "";
@@ -61,7 +57,7 @@ if ($id && $action === "update") {
 $sql = "SELECT * FROM persons";
 $result = $db->query($sql);
 
-$data = $result->fetchAll(PDO::FETCH_OBJ);
+$data = $result->fetchAll();
 
 
 

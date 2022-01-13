@@ -73,3 +73,18 @@ function getLinkToRoute(string $route, array $query = [null]): string {
 	}
 	return "/index.php?page=$route$queryString";
 }
+
+
+/**
+ * Fonction pour la mise en place de la base de donnée et
+ * facilité son exploitation
+ *
+ * @return PDO
+ */
+
+function getPDO(): PDO {
+	return new PDO(DSN, DB_USER, DB_PASS, [
+		PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+		PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
+	]);
+}
