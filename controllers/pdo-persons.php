@@ -18,11 +18,19 @@ if ($isPosted) {
 	// Recuperation des données
 	$firstName = filter_input(INPUT_POST, "first_name", FILTER_SANITIZE_STRING);
 	$lastName = filter_input(INPUT_POST, "last_name", FILTER_SANITIZE_STRING);
+	$id = (int)filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
 
 	if (!empty(trim($lastName)) && !empty(trim($firstName))) {
+		$queryParams = [$firstName, $lastName];
+
+		if(empty($id)) {
 		$sql = "INSERT INTO persons (first_name, last_name) VALUES (?, ?)";
+		} else {
+			$sql = "UPDATE persons SET first_name=?, last_name=? WHERE id=?";
+			$queryParams[] = $id;
+		}
 		$statement = $db->prepare($sql);
-		$statement->execute([$firstName, $lastName]);
+		$statement->execute($queryParams);
 		header("Location" . getLinkToRoute("pdo-persons"));
 	}
 }
