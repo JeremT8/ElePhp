@@ -21,7 +21,6 @@ function getRouteInfos(string $page, array $routes, string $notFound = "not_foun
 	if(! file_exists($controllerPath)){
 		$controllerPath = "controllers/$notFound.php";
 	}
-
 	return [
 		"controller" => $controller,
 		"controllerPath" => $controllerPath
