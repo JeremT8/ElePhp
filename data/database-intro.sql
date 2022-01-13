@@ -25,3 +25,11 @@ UPDATE persons SET last_name = 'Bastard' WHERE id = 5;
 
 -- Affichage des données
 SELECT *  FROM persons;
+
+
+-- Création d'une nouvelle table
+CREATE TABLE IF NOT EXISTS users (
+	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+	user_login VARCHAR(20) NOT NULL,
+	user_password VARCHAR(128) NOT NULL
+)
