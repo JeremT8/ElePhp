@@ -73,12 +73,12 @@ function getLinkToRoute(string $route, array $query = []): string {
         $queryString .= "&$key=$value";
     }
 
-    return "/index.php?page=$route$queryString";
+    return "/ElePhp/index.php?page=$route$queryString";
 }
 
 function getPDO(): PDO {
     return new PDO(DSN, DB_USER, DB_PASS, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ
     ]);
 }

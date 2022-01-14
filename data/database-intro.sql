@@ -82,7 +82,7 @@ SELECT * FROM livres_simples WHERE langue IN ('italien','castillan');
 
 
 -- Recuperer les livres qui NE sont PAS ecrits en Anglais et dont le prix est inferieur à 12
-SELECT * FROM livres_simples WHERE langue != 'anglais' AND prix < 12 ORDER BY DEC;
+SELECT * FROM livres_simples WHERE langue != 'anglais' AND prix < 12 ORDER BY prix DESC;
 
 -- Les livres edité par Hachette
 SELECT * FROM livres_simples WHERE editeur = 'Hachette';
