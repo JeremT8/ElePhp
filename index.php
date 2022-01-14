@@ -3,15 +3,13 @@ session_start();
 session_regenerate_id(true);
 
 // Configuration de l'application
-define("DSN" , "mysql:host=127.0.0.1;dbname=php_cda_2022;charset=utf8");
+define("DSN", "mysql:host=127.0.0.1;dbname=formation_cda_2022;charset=utf8");
 define("DB_USER", "root");
 define("DB_PASS", "");
-
 
 // inclusion des bibliothèques
 require "lib/flash.php";
 require "lib/framework.php";
-
 
 // Récupération du nom du contrôleur
 // par défaut "intro"
@@ -28,6 +26,7 @@ $securedRoutes = [
 if(in_array($page, $securedRoutes ) && ! isset($_SESSION["user"])){
     addFlash("Vous devez être authentifié pour accèder à la page $page");
     $_SESSION["redirectPage"] = $page;
+
     header("location:". getLinkToRoute('login'));
     exit;
 }
@@ -40,7 +39,8 @@ $routes = [
 ];
 
 // Gestion du routage
-// Cette fonction retourne deux variables:  $controller, $controllerpath
+// Cette fonction nous retourne deux variables
+// $controller et $controllerPath
 extract(getRouteInfos($page, $routes), EXTR_OVERWRITE);
 
 require $controllerPath;

@@ -1,35 +1,26 @@
--- Activation de la BDD
-USE php_cda_2022;
+-- Activation de la BD
+USE formation_cda_2022;
 
--- Création de la table 
+-- Création de la table
 CREATE TABLE IF NOT EXISTS persons (
-	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	last_name VARCHAR(30) NOT NULL,
-	first_name VARCHAR(30) NOT NULL
+    id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
+    last_name VARCHAR(30) NOT NULL,
+    first_name VARCHAR(30) NOT NULL
 );
 
 -- Insertion de données
-INSERT INTO persons (last_name, first_name) VALUES ('Tillet', 'Jeremy');
-INSERT INTO persons (last_name, first_name) VALUES ('BB', 'Marie');
-INSERT INTO persons (last_name, first_name) VALUES ('Sacco', 'Thibaut');
-INSERT INTO persons (last_name, first_name) VALUES ('Ronaldo', 'Cristiano');
+INSERT INTO persons (first_name, last_name)
+VALUES 
+('Ada', 'Lovelace'),
+('Sinead', 'O''Connor'),
+('Algernon', 'Lovelace');
 
 
--- Supprimer des données
-DELETE FROM persons WHERE id = 2;
+-- suppression des données
+DELETE FROM persons WHERE id=2;
 
+-- modification des données
+UPDATE persons SET first_name = 'Siobhan' WHERE id= 3;
 
--- Modification des données
-UPDATE persons SET last_name = 'Bastard' WHERE id = 5;
-
-
--- Affichage des données
-SELECT *  FROM persons;
-
-
--- Création d'une nouvelle table
-CREATE TABLE IF NOT EXISTS users (
-	id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
-	user_login VARCHAR(20) NOT NULL,
-	user_password VARCHAR(128) NOT NULL
-)
+-- affichage des données
+SELECT * FROM persons WHERE last_name='Lovelace';
