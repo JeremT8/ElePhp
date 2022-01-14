@@ -1,4 +1,4 @@
-USE formation_cda_2022;
+USE php_cda_2022;
 
 DROP TABLE IF EXISTS users;
 
