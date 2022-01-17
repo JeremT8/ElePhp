@@ -33,7 +33,8 @@ function findBooks(array $pagination, string $search){
     $sql .= " LIMIT :limit OFFSET :offset";
     
 
-    $offset = ($pagination["currentPage"] -1) * $pagination["numberPerPage"];
+    $offset = ($pagination["currentPage"] - 1) * $pagination["numberPerPage"];
+    var_dump($pagination);
     $limit = $pagination["numberPerPage"];
 
     $statement = getPDO()->prepare($sql);
