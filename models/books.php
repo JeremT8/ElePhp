@@ -4,7 +4,7 @@ function countBooks(string $search){
     $searchQuery = "";
     $params = [];
     if(! empty($search)){
-        $searchQuery = "WHERE auteur= :search OR genre= :search OR editeur= :search";
+        $searchQuery = " WHERE auteur= :search OR genre= :search OR editeur= :search ";
         $params = ["search" => $search];
     } 
 
@@ -23,11 +23,11 @@ function countBooks(string $search){
 }
 
 function findBooks(array $pagination, string $search){
-    $sql = "SELECT * FROM livres_simples ";
+    $sql = "SELECT * FROM livres_simples";
     
     if(! empty($search)){
-        $sql .= "WHERE
-                auteur= :search OR genre= :search OR editeur= :search";
+        $sql .= " WHERE
+                auteur= :search OR genre= :search OR editeur= :search ";
     }
 
     $sql .= " LIMIT :limit OFFSET :offset";
@@ -44,7 +44,7 @@ function findBooks(array $pagination, string $search){
     if(! empty($search)){
         $statement->bindValue("search", $search, PDO::PARAM_STR);
     }
-
+    var_dump($statement);
     $statement->execute();
 
     return $statement->fetchAll(PDO::FETCH_OBJ);
