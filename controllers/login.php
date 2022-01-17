@@ -1,6 +1,5 @@
 <?php
-
-require 'models/user.php';
+require "models/user.php";
 
 $isPosted = filter_has_var(INPUT_POST, "submit");
 $errors = [];
@@ -17,17 +16,12 @@ if($isPosted){
     }
 
     if(count($errors) == 0){
-        $userPath = 'data/users.json';
-        $users = file_get_contents($userPath);
-        $usersAsArray = json_decode($users, true);
-        
-
         if(authenticateUser($login, $password)){
             $_SESSION["user"] = $login;
             addFlash("Vous êtes connecté");
             $redirect = $_SESSION["redirectPage"] ?? "home";
             unset($_SESSION["redirectPage"]);
-            header("location:" . getLinkToRoute($redirect));
+            header("location:". getLinkToRoute($redirect));
             exit;
         } else {
             array_push($errors, "Vos infos de connection sont incorrectes");
@@ -35,8 +29,9 @@ if($isPosted){
     }
 }
 
-echo render ($controller, [
+echo render($controller, [
     "title" => "login",
-    "hasErrors" => count($errors)  > 0,
+    "hasErrors" => count($errors) > 0,
     "errors" => $errors
 ]);
+

@@ -1,4 +1,9 @@
 <?php
+
+// Import du fichier models
+require "models/person.php";
+
+
 // Connexion au serveur de la BD
 $db = getPDO();
 
@@ -17,17 +22,8 @@ if ($isPosted) {
 	$id = (int)filter_input(INPUT_POST, "id", FILTER_SANITIZE_NUMBER_INT);
 
 	if (!empty(trim($lastName)) && !empty(trim($firstName))) {
-		$queryParams = [$firstName, $lastName];
-
-		if(empty($id)) {
-		$sql = "INSERT INTO persons (first_name, last_name) VALUES (?, ?)";
-		} else {
-			$sql = "UPDATE persons SET first_name=?, last_name=? WHERE id=?";
-			$queryParams[] = $id;
-		}
-		$statement = $db->prepare($sql);
-		$statement->execute($queryParams);
-		header("Location" . getLinkToRoute("pdo-persons"));
+		savePerson($id, $firstName, $lastName);
+		header("Location:". getLinkToRoute("pdo-persons"));
 		exit;
 	}
 }
@@ -35,29 +31,16 @@ if ($isPosted) {
 
 // Gestion de la supression
 if ($id && $action === "delete") {
-	$sql = "DELETE FROM persons WHERE id = $id";
-	$db->exec($sql);
+	deleteOnePersonById($id);
 	header("Location:" . getLinkToRoute("pdo-persons"));
 	exit;
 }
 
 // En cas de modification, récupération des infos de la personne à modifier
+$currentPerson = getEmptyPerson();
 if ($id && $action === "update") {
-	$sql = "SELECT * FROM persons WHERE id = $id";
-	$result = $db->query($sql);
-	$currentPerson = $result->fetch();
-} else {
-	$currentPerson = new StdClass();
-	$currentPerson->first_name = "";
-	$currentPerson->last_name = "";
-	$currentPerson->id = null;
+	$currentPerson = getOnePersonById($id);
 }
-
-// Requête pour lister toutes les personnes
-$sql = "SELECT * FROM persons";
-$result = $db->query($sql);
-
-$data = $result->fetchAll();
 
 
 
@@ -65,7 +48,7 @@ $data = $result->fetchAll();
 echo render(
 	"persons",
 	[
-		"personList" => $data,
+		"personList" => findAllPersons(),
 		"currentPerson" => $currentPerson
 	]
 );

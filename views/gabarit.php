@@ -11,9 +11,10 @@
     <nav>
          <?php if (isset($_SESSION['user'])): ?>
             <h3>Bonjour <?=$_SESSION['user']?></h3>
-            <a href="<?= getLinkToRoute("logout") ?>">Déconnexion</a>
+            <a href="<?=getLinkToRoute("logout")?>">déconnexion</a>
         <?php else: ?>
-            <a href="<?= getLinkToRoute("login") ?>">Connexion</a>
+            <a href="<?=getLinkToRoute("login")?>">Connexion</a>
+            <a href="<?=getLinkToRoute("register")?>">Inscription</a>
         <?php endif;?>
     </nav>
    
@@ -26,7 +27,7 @@
                 </div>
             <?php endif;?>
 
-            <?= $content ?>
+            <?php echo $content ?>
         </div>
         
     </div>
