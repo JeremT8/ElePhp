@@ -373,7 +373,30 @@ CREATE TABLE IF NOT EXISTS langues (
 );
 
 
+-- ***************************
+-- Relation de plusieurs à plusieurs
+-- ***************************
+
+CREATE TABLE IF NOT EXISTS teams (
+    id SMALLINT unsigned PRIMARY KEY AUTO_INCREMENT,
+    name varchar(50) NULL
+);
+
+CREATE TABLE IF NOT EXISTS team_members (
+    team_id SMALLINT UNSIGNED,
+    person_id INT unsigned,
+    role VARCHAR(30) NOT NULL,
+    PRIMARY KEY (team_id, person_id)
+);
 
 
+INSERT INTO teams (name) VALUE ('CDA');
+
+INSERT INTO team_members (team_id, person_id, role) 
+VALUES 
+(1, 3, 'membre'),
+(1, 9, 'membre'),
+(1, 12, 'membre'),
+(1, 15, 'Chef');
 
 
